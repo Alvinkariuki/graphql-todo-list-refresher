@@ -12,7 +12,7 @@ const typeDefs = gql`
 
   "The query returns a  list of zero or more todos"
   type Query {
-    todos: [Todo]
+    getTodos: [Todo]
   }
 `;
 

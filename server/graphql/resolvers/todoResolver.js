@@ -1,15 +1,15 @@
-const todos = [
-  {
-    id: "6229eb0d8bdba23e4093c09b",
-    name: "shshshhshs",
-    description: "text for the format",
-    createdAt: Date.now(),
-    isDone: false,
-  },
-];
+const Todo = require("../../models/Todo.js");
 
 module.exports = {
   Query: {
-    todos: () => todos,
+    // Returns an array of todos to populate UI
+    getTodos: async () => {
+      try {
+        const todos = await Todo.find();
+        return todos;
+      } catch (err) {
+        throw new Error(err);
+      }
+    },
   },
 };

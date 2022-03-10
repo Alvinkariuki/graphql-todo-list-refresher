@@ -8,6 +8,11 @@
  *      ]
  *
  * -> Build CRUD resolvers for todo []
+ *    -> Create []
+ *    -> Read [✔️]
+ *    -> Update []
+ *    -> Delete []
+ *
  * -> Test out endpoints []
  */
 
@@ -17,15 +22,20 @@ dotenv.config();
 
 const typeDefs = require("./graphql/typeDefs.js");
 const resolvers = require("./graphql/resolvers");
-const client = require("./CONNETION.js");
+
+const mongoose = require("mongoose");
 
 const server = new ApolloServer({ typeDefs, resolvers });
 const PORT = process.env.PORT;
 
 // Connect to database
-client.connect(() => {
-  console.log("Connected to mongodb");
-  return server.listen(PORT, () =>
-    console.log(`Listening to port http://localhost:${PORT}`)
-  );
-});
+
+mongoose
+  .connect(process.env.CONNECT_URL, { useNewUrlParser: true })
+  .then(() => {
+    console.log("Connected to MOngodb");
+    return server.listen({ port: process.env.PORT });
+  })
+  .then((res) => {
+    console.log(`Server Running on port ${res.url}`);
+  });
