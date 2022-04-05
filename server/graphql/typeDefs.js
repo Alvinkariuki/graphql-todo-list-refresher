@@ -10,9 +10,12 @@ const typeDefs = gql`
     isDone: Boolean!
   }
 
-  "The query returns a  list of zero or more todos"
   type Query {
+    "The query returns a  list of zero or more todos"
     getTodos: [Todo]
+
+    "Query for a single todo based on its ID"
+    getTodo(id: ID!): Todo
   }
 `;
 

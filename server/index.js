@@ -26,14 +26,13 @@ const resolvers = require("./graphql/resolvers");
 const mongoose = require("mongoose");
 
 const server = new ApolloServer({ typeDefs, resolvers });
-const PORT = process.env.PORT;
 
 // Connect to database
 
 mongoose
   .connect(process.env.CONNECT_URL, { useNewUrlParser: true })
   .then(() => {
-    console.log("Connected to MOngodb");
+    console.log("Connected to Mongodb");
     return server.listen({ port: process.env.PORT });
   })
   .then((res) => {

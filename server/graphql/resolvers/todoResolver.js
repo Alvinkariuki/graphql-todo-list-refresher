@@ -11,5 +11,15 @@ module.exports = {
         throw new Error(err);
       }
     },
+
+    getTodo: async (_, { id }) => {
+      try {
+        const todo = await Todo.findById(id);
+        if (todo) return todo;
+        else return new Error("Todo not found");
+      } catch (err) {
+        throw new Error(err);
+      }
+    },
   },
 };
